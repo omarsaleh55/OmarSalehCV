@@ -163,17 +163,90 @@ app.use((req, res) => {
 });
 
 // Netlify serverless function handler
+const { createServer } = require('http');
+const { parse } = require('url');
+
 exports.handler = async (event, context) => {
   return new Promise((resolve) => {
-    app(event, context, (err, result) => {
-      if (err) {
-        resolve({
-          statusCode: 500,
-          body: JSON.stringify({ error: err.message })
-        });
-      } else {
-        resolve(result);
+    const { httpMethod, path, headers, body, queryStringParameters } = event;
+    
+    // Create a mock request object
+    const req = {
+      method: httpMethod,
+      url: path,
+      headers: headers || {},
+      body: body,
+      query: queryStringParameters || {},
+      get: (name) => headers[name.toLowerCase()],
+      setHeader: () => {},
+      writeHead: () => {},
+      end: () => {}
+    };
+    
+    // Create a mock response object
+    let responseData = {
+      statusCode: 200,
+      headers: {},
+      body: ''
+    };
+    
+    const res = {
+      status: (code) => {
+        responseData.statusCode = code;
+        return res;
+      },
+      setHeader: (name, value) => {
+        responseData.headers[name] = value;
+        return res;
+      },
+      render: (template, data) => {
+        // For now, return a simple HTML response
+        responseData.headers['Content-Type'] = 'text/html';
+        responseData.body = `
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>Omar Mohamed Saleh - Portfolio</title>
+            <link rel="stylesheet" href="/public/css/styles.css">
+          </head>
+          <body>
+            <div class="container">
+              <h1>Omar Mohamed Saleh</h1>
+              <p>Software Engineering Student</p>
+              <nav>
+                <a href="/experience">Experience</a>
+                <a href="/projects">Projects</a>
+                <a href="/contact">Contact</a>
+              </nav>
+              <p>Portfolio is being deployed. Please check back soon!</p>
+            </div>
+          </body>
+          </html>
+        `;
+        resolve(responseData);
+      },
+      send: (data) => {
+        responseData.body = data;
+        resolve(responseData);
+      },
+      json: (data) => {
+        responseData.headers['Content-Type'] = 'application/json';
+        responseData.body = JSON.stringify(data);
+        resolve(responseData);
       }
-    });
+    };
+    
+    // Handle different routes
+    if (path === '/' || path === '/home') {
+      res.render('home', { profile });
+    } else if (path === '/experience') {
+      res.render('experience', { profile });
+    } else if (path === '/projects') {
+      res.render('projects', { profile });
+    } else if (path === '/contact') {
+      res.render('contact', { profile });
+    } else {
+      res.status(404).send('Page not found');
+    }
   });
 };

@@ -1,11 +1,11 @@
 [build]
   command = "npm run build"
-  functions = "netlify/functions"
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "18"
 
+# Redirect all routes to index.html for SPA behavior
 [[redirects]]
   from = "/*"
   to = "/index.html"

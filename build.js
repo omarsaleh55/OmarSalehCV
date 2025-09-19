@@ -11,16 +11,11 @@ if (!fs.existsSync(distDir)) {
   fs.mkdirSync(distDir, { recursive: true });
 }
 
-// Copy public assets to dist
+// Copy public assets to dist (not in a subfolder)
 const publicDir = path.join(__dirname, 'public');
-const distPublicDir = path.join(distDir, 'public');
 
 if (fs.existsSync(publicDir)) {
-  if (!fs.existsSync(distPublicDir)) {
-    fs.mkdirSync(distPublicDir, { recursive: true });
-  }
-  
-  // Copy all files from public to dist/public
+  // Copy all files from public to dist
   const copyRecursive = (src, dest) => {
     const entries = fs.readdirSync(src, { withFileTypes: true });
     
@@ -39,21 +34,38 @@ if (fs.existsSync(publicDir)) {
     }
   };
   
-  copyRecursive(publicDir, distPublicDir);
+  copyRecursive(publicDir, distDir);
 }
 
 // Render EJS templates to static HTML
 const viewsDir = path.join(__dirname, 'views');
 const pages = ['home', 'experience', 'projects', 'contact', '404'];
 
+// Configure EJS to find includes
+ejs.fileLoader = (filePath) => {
+  // Handle relative paths from the views directory
+  if (filePath.startsWith('../')) {
+    const fullPath = path.join(__dirname, 'views', filePath);
+    return fs.readFileSync(fullPath, 'utf8');
+  }
+  return fs.readFileSync(filePath, 'utf8');
+};
+
 pages.forEach(page => {
   const templatePath = path.join(viewsDir, 'pages', `${page}.ejs`);
-  const layoutPath = path.join(viewsDir, 'layouts', 'MainLayout.ejs');
   
   if (fs.existsSync(templatePath)) {
     try {
       const template = fs.readFileSync(templatePath, 'utf8');
-      const html = ejs.render(template, { profile });
+      const html = ejs.render(template, { 
+        profile,
+        success: false,
+        form: {},
+        errors: {}
+      }, {
+        filename: templatePath,
+        root: viewsDir
+      });
       
       // Write to dist directory
       const outputPath = page === 'home' ? 
@@ -71,14 +83,13 @@ pages.forEach(page => {
 // Create a simple index.html if home page doesn't exist
 const indexPath = path.join(distDir, 'index.html');
 if (!fs.existsSync(indexPath)) {
-  const simpleIndex = `
-<!DOCTYPE html>
+  const simpleIndex = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Omar Mohamed Saleh - Portfolio</title>
-    <link rel="stylesheet" href="/public/css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <div class="container">
