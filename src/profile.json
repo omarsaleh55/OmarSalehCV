@@ -1,0 +1,215 @@
+{
+  "name": "Omar Mohamed Saleh",
+  "phone": "+20 01276292068",
+  "email": "omarsaleh55@gmail.com",
+  "location": "Egypt",
+  "links": {
+    "github": "https://github.com/omarsaleh55",
+    "linkedin": "https://www.linkedin.com/in/omar-saleh-28b840365/",
+    "website": ""
+  },
+  "education": [
+    {
+      "institution": "Galala University / Arizona State University",
+      "degree": "Dual Degree - Software Engineering",
+      "start": 2022,
+      "end": 2026,
+      "gpa": "3.17",
+      "gpaAsu": "3.5",
+      "coursework": [
+        "Analysis & Design of Algorithms",
+        "Discrete Mathematics",
+        "Linear Algebra",
+        "Differential Equations",
+        "Database Systems",
+        "Digital Design",
+        "Computer Organization & Assembly",
+        "Software Engineering",
+        "Object-Oriented Programming",
+        "Computer Architecture",
+        "Computer Systems Fundamentals",
+        "Data Structures"
+      ]
+    }
+  ],
+  "skills": {
+    "languages": ["Python", "LISP", "SQL", "Java", "JavaScript", "C++", "Relational Calculus/Algebra"],
+    "technologies": ["MySQL", "Arduino", "Microsoft Office"],
+    "softSkills": ["Project Management", "Time Management", "Leadership", "Critical Thinking", "Multitasking", "Problem Solving"]
+  },
+  "experience": [
+    {
+      "title": "Data Intern",
+      "company": "INCUBE EGYPT",
+      "summary": "Managed extensive SQL databases and large datasets to ensure efficient storage, retrieval, and analysis.",
+      "start": "",
+      "end": ""
+    }
+  ],
+  "projects": [
+    {
+      "name": "MenuIQ - Restaurant Management System",
+      "stack": [
+        "React 19", "Node.js", "Express.js", "MySQL", "Material-UI", "Vite", 
+        "React Router", "i18next", "Framer Motion", "Nivo Charts", "JWT", 
+        "Multer", "Bcrypt", "Helmet", "Rate Limiting", "RESTful API"
+      ],
+      "description": "Comprehensive, full-stack restaurant management system designed to streamline operations and improve efficiency for restaurants. Features multi-role user management, real-time order processing, advanced analytics, and multi-language support.",
+      "highlights": [
+        "Multi-role operations: Owner/Manager Dashboard, Cashier Interface, Kitchen Interface with role-based access control",
+        "Advanced analytics: Revenue tracking, menu profitability analysis, customer feedback analytics with Nivo charts",
+        "Comprehensive menu management: Multi-language support (English/Arabic), bulk import/export, image management",
+        "Real-time features: Live order status updates, kitchen-cashier coordination, mobile-responsive design",
+        "Technical stack: React 19 with modern hooks, Material-UI components, Vite for fast builds",
+        "Backend architecture: Node.js/Express with MySQL, JWT auth, file uploads, rate limiting",
+        "Security: Helmet headers, bcrypt hashing, input validation, SQL injection prevention",
+        "Database design: Connection pooling, transactions, soft delete, activity logging",
+        "User experience: Framer Motion animations, responsive design, internationalization",
+        "Business features: QR code generation, email notifications, audit trails, API-first design",
+        "Scalability: Multi-business support, enterprise features, third-party integrations ready"
+      ],
+      "images": [
+        "https://via.placeholder.com/400x300/3b82f6/ffffff?text=Dashboard+View",
+        "https://via.placeholder.com/400x300/10b981/ffffff?text=Menu+Management",
+        "https://via.placeholder.com/400x300/f59e0b/ffffff?text=Analytics+Panel"
+      ]
+    },
+    {
+      "name": "ASU-GU Portal - University Course Equivalency Management System",
+      "stack": [
+        "Node.js", "Express.js", "MySQL", "Sequelize ORM", "EJS", "Tailwind CSS",
+        "bcryptjs", "Multer", "Nodemailer", "xlsx", "Material Design Icons"
+      ],
+      "description": "Comprehensive course equivalency management system between Galala University and Arizona State University, featuring multi-role authentication, batch uploads, advanced search/filtering, and audit trails.",
+      "highlights": [
+        "Multi-role auth: Admin, Program Director, Cintana Users with OTP recovery",
+        "Course equivalency: manual entry, Excel/CSV batch uploads, CRUD operations",
+        "Advanced search/filtering by level, delivery mode, transfer direction",
+        "Comprehensive data: course codes, catalog years, prerequisites, program associations",
+        "Security: password strength validation, forced resets, SQL injection prevention, XSS protection",
+        "File processing: Excel/CSV parsing with xlsx library, upload validation",
+        "Database: normalized schema, indexing, audit logging, pagination for large datasets",
+        "Email integration: OTP delivery, notifications via Nodemailer",
+        "UI: Tailwind CSS responsive design, Material Design icons, mobile-first",
+        "Architecture: ES6 modules, RESTful API, rate limiting, session security",
+        "Business impact: streamlined student transfers, automated workflows, audit compliance"
+      ]
+    },
+    {
+      "name": "AI-Powered Real Estate CRM System",
+      "stack": ["Node.js", "Express", "MySQL", "EJS", "OpenRouter AI", "Puppeteer", "jsPDF", "Multer", "Nodemailer"],
+      "description": "Comprehensive multi-role CRM for real estate with AI-driven insights, real-time analytics, multi-channel lead management, ad platform integrations, property catalog, and BI dashboards.",
+      "highlights": [
+        "Role-based access (Admin, Sales Manager, Sales Rep, Marketing Analyst)",
+        "Secure auth with bcrypt and protected routes",
+        "Real-time KPI dashboards and conversion tracking",
+        "Campaign ROI and performance metrics with export (PDF, CSV, Excel)",
+        "AI marketing insights via OpenRouter; automated lead scoring and distribution",
+        "Lead tracking across WhatsApp, email, web forms, ads with activity logging",
+        "Google/Meta/LinkedIn/TikTok integrations with UTM attribution",
+        "Property inventory with media galleries and payment plans",
+        "Puppeteer/jsPDF reports, Nodemailer automation",
+        "MySQL with 20+ normalized tables, indexing, and audit logging"
+      ]
+    },
+    {
+      "name": "Health Ethics Learning Platform (LMS)",
+      "stack": [
+        "Node.js",
+        "Express",
+        "MySQL",
+        "EJS",
+        "JWT/Session",
+        "Multer"
+      ],
+      "description": "Role-based Health Ethics LMS with secure auth (OTP, resets), course/quiz management, announcements, messaging with spam detection, and student analytics (grades/transcript/GPA).",
+      "highlights": [
+        "RBAC: Admin, Instructor, Student with middleware-guarded routes",
+        "Auth: session/JWT, OTP verification, password reset and forced updates",
+        "Course/Module/Page management with enhanced assignments",
+        "Quizzes with submissions, feedback, resubmission, grade approvals/analysis",
+        "Announcements to targeted recipients; inbox/sent messaging with spam detection",
+        "Student dashboards: grades, transcript, attendance, GPA calculator",
+        "Admin console: users, enrollments, announcements, message audit, resets",
+        "MySQL pooling, migrations, helpers; file uploads for profile images"
+      ]
+    },
+    {
+      "name": "Hospital Management System",
+      "stack": [
+        "Node.js", "Express.js", "MySQL", "EJS", "HTML5", "CSS3", "JavaScript",
+        "express-session", "bcrypt", "Multer", "PDFKit", "Nodemailer", "date-fns", "validator", "body-parser"
+      ],
+      "description": "Comprehensive, multi-role hospital management platform that streamlines operations across appointments, billing, pharmacy, medical records, and user management with secure authentication and automated PDF invoicing.",
+      "highlights": [
+        "Multi-role system: Patient, Doctor, Receptionist, Pharmacist",
+        "Appointment booking with time-slot validation and doctor availability",
+        "Room allocation, rescheduling, cancellation, and billing integration",
+        "Automated invoice generation using PDFKit with branding",
+        "Insurance verification, payment status tracking, multi-payment methods",
+        "Pharmacy: prescriptions, inventory with expiry tracking, refills, automated billing",
+        "Medical records: histories, lab tests, radiology reports, allergies/meds",
+        "Security: sessions, bcrypt hashing, RBAC, secure uploads and profile photos",
+        "File management: insurance docs, PDF storage/retrieval",
+        "Architecture: MVC, transactions for integrity, comprehensive error handling",
+        "Responsive UI with role-specific navigation and dynamic filters/search",
+        "Team delivery: sprint workflow, feature branches, documented codebase"
+      ]
+    },
+    {
+      "name": "Blind Walking Stick",
+      "stack": ["C++", "Arduino Uno"],
+      "description": "Assists visually impaired individuals using ultrasonic sensors, gyroscope, and water sensor."
+    },
+    {
+      "name": "E-Commerce Bookstore Platform with AI Integration",
+      "stack": [
+        "Node.js", "Express.js", "MySQL", "EJS", "HTML5", "CSS3", "JavaScript",
+        "bcrypt", "express-session", "RESTful API", "NLP/AI"
+      ],
+      "description": "Full-stack online bookstore with AI-powered recommendations, smart search, intelligent chatbot, secure auth, shopping cart, and order management.",
+      "highlights": [
+        "Secure auth: bcrypt hashing, session-based login, role-based access (Admin/User)",
+        "E-commerce: product catalog, categories, cart with quantity/stock validation, orders, inventory tracking",
+        "AI features: NLP smart search, personalized recommendations, review sentiment analysis, chatbot support",
+        "Modern UI/UX: responsive design, glassmorphism, animated backgrounds, floating labels, mobile-first",
+        "Architecture: MVC with modular models/controllers/views and clean RESTful endpoints",
+        "Database: MySQL schema with users, books, cart, orders, reviews; pooling and optimized queries",
+        "Security: input validation, SQL injection prevention, secure session management",
+        "Real-time cart updates and stock synchronization"
+      ]
+    },
+    {
+      "name": "Smart Health Band",
+      "stack": ["C++", "Arduino Uno"],
+      "description": "Wearable device monitoring heart rate, activity, sleep, and SpO2."
+    },
+    {
+      "name": "Obstacle Avoiding Car",
+      "stack": ["C++", "Arduino Uno"],
+      "description": "Autonomous robotic car that detects obstacles and navigates around them."
+    },
+    {
+      "name": "Airport System",
+      "stack": ["SQL", "Java"],
+      "description": "Modified airport system model covering terminals and flight management."
+    },
+    {
+      "name": "Super Market System Application",
+      "stack": ["Java", "SQL"],
+      "description": "Retail system managing inventory, sales, and customer transactions."
+    },
+    {
+      "name": "Smart Parking System",
+      "stack": ["C++", "Arduino"],
+      "description": "Real-time parking availability with sensors, servo motors, and IR sensors."
+    },
+    {
+      "name": "Real-Time ASL Recognition",
+      "stack": ["Python", "OpenCV", "TensorFlow", "MediaPipe"],
+      "description": "Real-time ASL translator using CNNs and computer vision with GUI for gesture-to-text."
+    }
+  ]
+}
+
+

@@ -1,0 +1,109 @@
+<%- include('../partials/head', { 
+  title: 'Home', 
+  profile, 
+  description: 'Software Engineering student at Galala University/Arizona State University. Full-stack developer specializing in AI, computer vision, and web applications.',
+  canonical: 'https://omarsaleh.dev'
+}) %>
+  <main class="container">
+    <section class="hero">
+      <div>
+        <h1>Building reliable systems and AI-powered apps.<br/>I'm <span><%= profile.name %></span></h1>
+        <p class="lead">Software Engineering (GU/ASU) — turning ideas into performant, secure, and user-friendly products.</p>
+        <div class="hero-contacts">
+          <span><strong>Phone:</strong> <%= profile.phone %></span>
+          <% if (profile.email) { %>
+            <span><strong>Email:</strong> <%= profile.email %></span>
+          <% } %>
+        </div>
+        <div class="hero-actions">
+          <a href="/projects" class="btn">See Projects</a>
+          <a href="/contact" class="btn secondary">Get in Touch</a>
+          <a href="/resume" class="btn secondary">Download CV</a>
+        </div>
+      </div>
+      <div class="hero-visual"></div>
+    </section>
+
+    <section class="section-subtle">
+      <div class="value-props">
+        <div class="value-prop">
+          <h3>Full-Stack Delivery</h3>
+          <p>From databases and APIs to clean, responsive UIs.</p>
+        </div>
+        <div class="value-prop">
+          <h3>AI & CV Experience</h3>
+          <p>TensorFlow, OpenCV, MediaPipe for real-time solutions.</p>
+        </div>
+        <div class="value-prop">
+          <h3>Hardware Integrations</h3>
+          <p>Arduino-based systems for assistive and smart devices.</p>
+        </div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="num"><%= profile.projects.length %>+</div><div>Projects</div></div>
+        <div class="metric"><div class="num">3.17</div><div>GPA</div></div>
+        <div class="metric"><div class="num">2026</div><div>Graduation</div></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <% profile.education.forEach(function(edu){ %>
+        <div class="card">
+          <h3><%= edu.institution %></h3>
+          <p><%= edu.degree %> (<%= edu.start %> – <%= edu.end %>) | GPA: <%= edu.gpa %><% if (edu.gpaAsu) { %> (ASU: <%= edu.gpaAsu %>)<% } %></p>
+          <details>
+            <summary>Relevant Coursework</summary>
+            <ul>
+            <% edu.coursework.forEach(function(course){ %>
+              <li><%= course %></li>
+            <% }) %>
+            </ul>
+          </details>
+        </div>
+      <% }) %>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div>
+          <h3>Languages</h3>
+          <ul>
+            <% profile.skills.languages.forEach(function(s){ %><li><%= s %></li><% }) %>
+          </ul>
+        </div>
+        <div>
+          <h3>Technologies</h3>
+          <ul>
+            <% profile.skills.technologies.forEach(function(s){ %><li><%= s %></li><% }) %>
+          </ul>
+        </div>
+        <div>
+          <h3>Soft Skills</h3>
+          <ul>
+            <% profile.skills.softSkills.forEach(function(s){ %><li><%= s %></li><% }) %>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Recent Projects</h2>
+      <div class="cards">
+        <% profile.projects.slice(0,6).forEach(function(p){ %>
+          <div class="card">
+            <h3><%= p.name %></h3>
+            <p><%= p.description %></p>
+            <div class="tags">
+              <% p.stack.forEach(function(t){ %><span class="tag"><%= t %></span><% }) %>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+      <p><a href="/projects" class="btn">View all projects</a></p>
+    </section>
+  </main>
+<%- include('../partials/footer', { profile }) %>
+
+

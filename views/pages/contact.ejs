@@ -1,0 +1,57 @@
+<%- include('../partials/head', { title: 'Contact', profile }) %>
+  <main class="container">
+    <h1>Contact</h1>
+    <% if (success) { %>
+      <div class="card" style="border-left: 4px solid var(--accent)">
+        <p>Thanks! Your message has been sent. I’ll get back to you soon.</p>
+      </div>
+    <% } %>
+    <div class="cards" style="grid-template-columns: 1.1fr 0.9fr;">
+      <div class="card">
+        <form method="POST" action="/contact" novalidate>
+          <div class="form-grid">
+            <div class="form-field <%= errors.name ? 'has-error' : '' %>">
+              <label for="name">Full name</label>
+              <input id="name" name="name" type="text" value="<%= (form && form.name) || '' %>" placeholder="Your name" />
+              <% if (errors.name) { %><div class="error"><%= errors.name %></div><% } %>
+            </div>
+            <div class="form-field <%= errors.mobile ? 'has-error' : '' %>">
+              <label for="mobile">Mobile</label>
+              <input id="mobile" name="mobile" type="tel" value="<%= (form && form.mobile) || '' %>" placeholder="e.g. +20 0123456789" />
+              <% if (errors.mobile) { %><div class="error"><%= errors.mobile %></div><% } %>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-field <%= errors.email ? 'has-error' : '' %>">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" value="<%= (form && form.email) || '' %>" placeholder="you@example.com" />
+              <% if (errors.email) { %><div class="error"><%= errors.email %></div><% } %>
+            </div>
+          </div>
+          <div class="form-field <%= errors.message ? 'has-error' : '' %>">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="How can I help?"><%= (form && form.message) || '' %></textarea>
+            <% if (errors.message) { %><div class="error"><%= errors.message %></div><% } %>
+          </div>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+      <div class="card">
+        <p><strong>Name:</strong> <%= profile.name %></p>
+        <p><strong>Phone:</strong> <%= profile.phone %></p>
+        <% if (profile.email) { %><p><strong>Email:</strong> <a href="mailto:<%= profile.email %>"><%= profile.email %></a></p><% } %>
+        <div class="hero-links">
+          <% if (profile.links.github) { %><a href="<%= profile.links.github %>" target="_blank" rel="noopener">GitHub</a><% } %>
+          <% if (profile.links.linkedin) { %><a href="<%= profile.links.linkedin %>" target="_blank" rel="noopener">LinkedIn</a><% } %>
+          <% if (profile.links.website) { %><a href="<%= profile.links.website %>" target="_blank" rel="noopener">Website</a><% } %>
+        </div>
+        <div class="contact-actions">
+          <a href="/resume" class="btn">Download Resume</a>
+          <a href="/vcard" class="btn secondary">Save Contact</a>
+        </div>
+      </div>
+    </div>
+  </main>
+<%- include('../partials/footer', { profile }) %>
+
+

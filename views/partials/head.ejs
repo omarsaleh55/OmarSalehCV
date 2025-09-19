@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title || (profile && profile.name ? profile.name + ' | Portfolio' : 'Portfolio') %></title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="<%= (typeof description !== 'undefined' && description) ? description : 'Software Engineering student at Galala University/Arizona State University. Full-stack developer specializing in AI, computer vision, and web applications.' %>" />
+  <meta name="keywords" content="Software Engineering, Full-Stack Developer, AI, Computer Vision, Node.js, Python, JavaScript, Portfolio" />
+  <meta name="author" content="<%= profile.name %>" />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="<%= (typeof canonical !== 'undefined' && canonical) ? canonical : 'https://omarsaleh.dev' %>" />
+  <meta property="og:title" content="<%= (typeof title !== 'undefined' && title) ? title : (profile.name + ' | Portfolio') %>" />
+  <meta property="og:description" content="<%= (typeof description !== 'undefined' && description) ? description : 'Software Engineering student specializing in AI, computer vision, and full-stack development.' %>" />
+  <meta property="og:image" content="<%= (typeof image !== 'undefined' && image) ? image : 'https://omarsaleh.dev/images/og-image.jpg' %>" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="<%= (typeof canonical !== 'undefined' && canonical) ? canonical : 'https://omarsaleh.dev' %>" />
+  <meta property="twitter:title" content="<%= (typeof title !== 'undefined' && title) ? title : (profile.name + ' | Portfolio') %>" />
+  <meta property="twitter:description" content="<%= (typeof description !== 'undefined' && description) ? description : 'Software Engineering student specializing in AI, computer vision, and full-stack development.' %>" />
+  <meta property="twitter:image" content="<%= (typeof image !== 'undefined' && image) ? image : 'https://omarsaleh.dev/images/og-image.jpg' %>" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/styles.css" />
+  
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "<%= profile.name %>",
+    "email": "<%= profile.email %>",
+    "telephone": "<%= profile.phone %>",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "EG"
+    },
+    "alumniOf": "Galala University",
+    "jobTitle": "Software Engineering Student",
+    "url": "<%= profile.links.github %>",
+    "sameAs": [
+      "<%= profile.links.github %>",
+      "<%= profile.links.linkedin %>"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/"><%= profile.name %></a>
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a href="/experience">Experience</a>
+        <a href="/projects">Projects</a>
+        <a href="/contact">Contact</a>
+        <a href="/contact" class="btn primary-cta">Hire Me</a>
+      </nav>
+    </div>
+  </header>
+
+

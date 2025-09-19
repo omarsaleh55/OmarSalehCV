@@ -1,0 +1,18 @@
+<%- include('../partials/head', { title: 'Experience', profile }) %>
+  <main class="container">
+    <h1>Experience</h1>
+    <% if (profile.experience && profile.experience.length) { %>
+      <% profile.experience.forEach(function(exp){ %>
+        <div class="card">
+          <h3><%= exp.title %> — <%= exp.company %></h3>
+          <p class="muted"><%= (exp.start || '') %> <%= exp.end ? '– ' + exp.end : '' %></p>
+          <p><%= exp.summary %></p>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <p>No experience added yet.</p>
+    <% } %>
+  </main>
+<%- include('../partials/footer', { profile }) %>
+
+

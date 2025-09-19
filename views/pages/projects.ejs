@@ -1,0 +1,196 @@
+<%- include('../partials/head', { title: 'Projects', profile }) %>
+  <main class="container">
+    <h1>Projects</h1>
+    <div class="cards">
+      <% profile.projects.forEach(function(p, index){ %>
+        <div class="card project-card" data-project-index="<%= index %>">
+          <h3><%= p.name %></h3>
+          <p><%= p.description %></p>
+          <div class="tags">
+            <% p.stack.forEach(function(t){ %><span class="tag"><%= t %></span><% }) %>
+          </div>
+          <div class="card-footer">
+            <button class="view-details-btn">Click to view details →</button>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </main>
+
+  <!-- Project Details Modal -->
+  <div id="projectModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle"></h2>
+        <span class="close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="project-info">
+          <!-- Project Images Section -->
+          <div class="project-images" id="projectImages" style="display: none;">
+            <h3>Project Screenshots</h3>
+            <div class="image-gallery" id="imageGallery"></div>
+          </div>
+          
+          <div class="project-description">
+            <h3>Description</h3>
+            <p id="modalDescription"></p>
+          </div>
+          
+          <div class="project-stack">
+            <h3>Technologies Used</h3>
+            <div id="modalStack" class="modal-tags"></div>
+          </div>
+          
+          <div class="project-highlights">
+            <h3>Key Features & Highlights</h3>
+            <ul id="modalHighlights"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM loaded, initializing modal functionality...');
+      
+      // Project data from server
+      const projects = <%- JSON.stringify(profile.projects) %>;
+      console.log('Projects data:', projects);
+      
+      // Modal functionality
+      const modal = document.getElementById('projectModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalDescription = document.getElementById('modalDescription');
+      const modalStack = document.getElementById('modalStack');
+      const modalHighlights = document.getElementById('modalHighlights');
+      const projectImages = document.getElementById('projectImages');
+      const imageGallery = document.getElementById('imageGallery');
+      const closeBtn = document.querySelector('.close');
+      
+      console.log('Modal elements:', { modal, modalTitle, modalDescription, modalStack, modalHighlights, projectImages, imageGallery, closeBtn });
+      
+      // Function to open modal with project data
+      function openProjectModal(projectIndex) {
+        const project = projects[projectIndex];
+        console.log('Opening modal for project:', project);
+        
+        // Populate modal with project data
+        modalTitle.textContent = project.name;
+        modalDescription.textContent = project.description;
+        
+        // Clear and populate stack tags
+        modalStack.innerHTML = '';
+        if (project.stack && project.stack.length > 0) {
+          project.stack.forEach(tech => {
+            const tag = document.createElement('span');
+            tag.className = 'modal-tag';
+            tag.textContent = tech;
+            modalStack.appendChild(tag);
+          });
+        }
+        
+        // Clear and populate highlights
+        modalHighlights.innerHTML = '';
+        if (project.highlights && project.highlights.length > 0) {
+          project.highlights.forEach(highlight => {
+            const li = document.createElement('li');
+            li.textContent = highlight;
+            modalHighlights.appendChild(li);
+          });
+        } else {
+          const li = document.createElement('li');
+          li.textContent = 'No additional highlights available.';
+          li.style.fontStyle = 'italic';
+          li.style.color = 'var(--muted)';
+          modalHighlights.appendChild(li);
+        }
+        
+        // Handle project images (for future use)
+        imageGallery.innerHTML = '';
+        if (project.images && project.images.length > 0) {
+          projectImages.style.display = 'block';
+          project.images.forEach(imageUrl => {
+            const imgContainer = document.createElement('div');
+            imgContainer.className = 'image-item';
+            
+            const img = document.createElement('img');
+            img.src = imageUrl;
+            img.alt = project.name + ' screenshot';
+            img.className = 'project-image';
+            
+            imgContainer.appendChild(img);
+            imageGallery.appendChild(imgContainer);
+          });
+        } else {
+          projectImages.style.display = 'none';
+        }
+        
+        // Show modal
+        console.log('Showing modal...');
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      }
+      
+      // Add click event to project cards
+      const projectCards = document.querySelectorAll('.project-card');
+      console.log('Found project cards:', projectCards.length);
+      
+      projectCards.forEach((card, index) => {
+        // Add click event to the entire card
+        card.addEventListener('click', function(e) {
+          // Don't trigger if clicking on the button (to avoid double events)
+          if (e.target.classList.contains('view-details-btn')) {
+            return;
+          }
+          console.log('Card clicked:', index);
+          const projectIndex = parseInt(this.dataset.projectIndex);
+          openProjectModal(projectIndex);
+        });
+        
+        // Add click event to the "Click to view details" button
+        const viewDetailsBtn = card.querySelector('.view-details-btn');
+        if (viewDetailsBtn) {
+          viewDetailsBtn.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent card click event
+            console.log('View details button clicked for card:', index);
+            const projectIndex = parseInt(card.dataset.projectIndex);
+            openProjectModal(projectIndex);
+          });
+        }
+      });
+      
+      // Close modal functionality
+      if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+          console.log('Close button clicked');
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        });
+      }
+      
+      // Close modal when clicking outside
+      window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+          console.log('Clicked outside modal');
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }
+      });
+      
+      // Close modal with Escape key
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && modal.style.display === 'block') {
+          console.log('Escape key pressed');
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }
+      });
+    });
+  </script>
+
+<%- include('../partials/footer', { profile }) %>
+
+
