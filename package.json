@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
+    "build": "npm run build:static",
+    "build:static": "node build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

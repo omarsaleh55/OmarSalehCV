@@ -57,7 +57,7 @@
       console.log('DOM loaded, initializing modal functionality...');
       
       // Project data from server
-      const projects = <%- JSON.stringify(profile.projects) %>;
+      const projects = <%- JSON.stringify(profile.projects).replace(/</g, '\\u003c') %>;
       console.log('Projects data:', projects);
       
       // Modal functionality
